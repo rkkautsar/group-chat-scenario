@@ -4,6 +4,12 @@ mode: milestone
 pool: group-chat
 requiredCheck: Chat E2E / mentions
 workflowPath: .github/workflows/chat-e2e.yml
+visibleEvaluatorFiles:
+  - playwright.config.js
+  - test/e2e/threads.spec.js
+  - test/e2e/mentions.spec.js
+  - test/e2e/search.spec.js
+  - test/e2e/muting.spec.js
 protectedFiles:
   - .github/workflows/chat-e2e.yml
   - scripts/active-cards.sh
@@ -23,3 +29,5 @@ endings:
   partial: The milestone could not be fully assessed.
 ---
 People miss requests directed at them because messages arrive while they are away. Add @mentions that recognize a teammate in a new message, create a notification for the intended person, and let that person open the source message. A notification belongs to its recipient; another teammate must not see it as their own. Avoid duplicate notifications when the same person is mentioned twice in one message.
+
+The visible acceptance test is `test/e2e/mentions.spec.js`. In the seeded #general conversation, enter `@maya can you review the launch checklist?` in the message textbox and send it. Open `Mentions`; the resulting Maya notification must identify #general and include the message text so it can be traced to its source. The test uses accessible control names and visible text, not an internal test ID. Run it with `npm run test:e2e -- test/e2e/mentions.spec.js`.

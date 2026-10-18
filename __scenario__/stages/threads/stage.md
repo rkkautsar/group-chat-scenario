@@ -4,6 +4,12 @@ mode: milestone
 pool: group-chat
 requiredCheck: Chat E2E / threads
 workflowPath: .github/workflows/chat-e2e.yml
+visibleEvaluatorFiles:
+  - playwright.config.js
+  - test/e2e/threads.spec.js
+  - test/e2e/mentions.spec.js
+  - test/e2e/search.spec.js
+  - test/e2e/muting.spec.js
 protectedFiles:
   - .github/workflows/chat-e2e.yml
   - scripts/active-cards.sh
@@ -23,3 +29,5 @@ endings:
   partial: The milestone could not be fully assessed.
 ---
 Teammates are replying in different places, and important context gets buried in the main channel. Add message threads so someone can open a message, read its replies in context, and respond without turning every follow-up into a new channel message. The thread should stay connected to its original message and show an accurate reply count. Keep channel conversation usable on narrow screens and make thread controls accessible by keyboard.
+
+The visible acceptance test is `test/e2e/threads.spec.js`. From the seeded message list, activate a message’s `Reply` control, enter `Thanks, I will add the deployment notes.` in the reply textbox, and submit with `Send reply`. The reply must appear in that message’s thread and the parent message must show `1 reply`. The test relies on these accessible control names and visible outcomes; it does not require a particular component or internal test ID. Run it with `npm run test:e2e -- test/e2e/threads.spec.js`.

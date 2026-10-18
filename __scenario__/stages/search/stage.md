@@ -4,6 +4,12 @@ mode: milestone
 pool: group-chat
 requiredCheck: Chat E2E / search
 workflowPath: .github/workflows/chat-e2e.yml
+visibleEvaluatorFiles:
+  - playwright.config.js
+  - test/e2e/threads.spec.js
+  - test/e2e/mentions.spec.js
+  - test/e2e/search.spec.js
+  - test/e2e/muting.spec.js
 protectedFiles:
   - .github/workflows/chat-e2e.yml
   - scripts/active-cards.sh
@@ -23,3 +29,5 @@ endings:
   partial: The milestone could not be fully assessed.
 ---
 The team agreed on a decision last week, but no one remembers which channel or phrase contained it. Add message search across channels. Results should match message text without confusing a search for `build` with `builder`, show the channel and author, and open the message in its conversation. Handle empty queries and no matches without showing stale results.
+
+The visible acceptance test is `test/e2e/search.spec.js`. Enter `build notes` in the search textbox and activate `Search`. Results must include `Sam in #general: The build notes are ready for review.` The test uses the search control’s accessible name and visible result text, not an internal test ID. Run it with `npm run test:e2e -- test/e2e/search.spec.js`.

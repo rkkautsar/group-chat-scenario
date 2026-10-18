@@ -1,6 +1,6 @@
 schema: 1
 id: group-chat
-version: 0.2.0
+version: 0.2.1
 title: Group Chat
 description: Plan and deliver a group chat feature from a pool of real product milestones.
 characters: {}
