@@ -1,0 +1,40 @@
+name: Chat E2E
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  select-cards:
+    runs-on: ubuntu-latest
+    outputs:
+      cards: ${{ steps.cards.outputs.cards }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: cards
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/active-cards.sh
+  browser:
+    needs: select-cards
+    if: needs.select-cards.outputs.cards != '[]'
+    name: Chat E2E / ${{ matrix.card }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        card: ${{ fromJSON(needs.select-cards.outputs.cards) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test test/e2e/${{ matrix.card }}.spec.js

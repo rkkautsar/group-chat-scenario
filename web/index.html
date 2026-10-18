@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campfire · team chat</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <h1>Campfire</h1>
+        <p class="workspace">Northstar Studio</p>
+        <h2>Channels</h2>
+        <nav id="channels" aria-label="Channels"></nav>
+        <button id="mentions" class="quiet">Mentions <span id="mention-count"></span></button>
+        <button id="notifications" class="quiet">Notifications</button>
+      </aside>
+      <section class="conversation">
+        <header class="topbar">
+          <div><p class="eyebrow">CHANNEL</p><h2 id="channel-name"># general</h2></div>
+          <label class="search"><span class="sr-only">Search messages</span><input id="search" placeholder="Search messages" /><button id="search-button">Search</button></label>
+        </header>
+        <div id="search-results" aria-live="polite"></div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <form id="composer" class="composer">
+          <label class="sr-only" for="message">Message in General</label>
+          <input id="message" placeholder="Message #general" autocomplete="off" />
+          <button>Send</button>
+        </form>
+      </section>
+      <aside id="panel" class="panel" aria-label="Details"></aside>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
