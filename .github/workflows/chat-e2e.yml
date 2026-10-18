@@ -36,5 +36,6 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - run: npm install --no-save --package-lock=false @playwright/test
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test test/e2e/${{ matrix.card }}.spec.js

@@ -7,6 +7,7 @@ workflowPath: .github/workflows/chat-e2e.yml
 protectedFiles:
   - .github/workflows/chat-e2e.yml
   - scripts/active-cards.sh
+  - playwright.config.js
   - test/e2e/threads.spec.js
   - test/e2e/mentions.spec.js
   - test/e2e/search.spec.js
