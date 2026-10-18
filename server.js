@@ -12,6 +12,10 @@ const messages = [
   { id: "m3", channel: "launch", author: "Alex", body: "The launch checklist is almost done.", time: "10:05", replies: [] },
 ];
 const preferences = { muted: [] };
+const notifications = [
+  { id: "n1", channel: "general", text: "Sam mentioned you in #general", message: "The build notes are ready for review." },
+  { id: "n2", channel: "launch", text: "Alex mentioned you in #launch", message: "The launch checklist is almost done." },
+];
 const send = (res, status, data) => {
   res.writeHead(status, { "content-type": "application/json; charset=utf-8" });
   res.end(JSON.stringify(data));
@@ -22,7 +26,7 @@ createServer(async (req, res) => {
   if (url.pathname.startsWith("/api/")) {
     if (req.method === "GET" && url.pathname === "/api/channels") return send(res, 200, channels);
     if (req.method === "GET" && url.pathname === "/api/messages") return send(res, 200, messages);
-    if (req.method === "GET" && url.pathname === "/api/notifications") return send(res, 200, []);
+    if (req.method === "GET" && url.pathname === "/api/notifications") return send(res, 200, notifications.filter((item) => !preferences.muted.includes(item.channel)));
     if (req.method === "GET" && url.pathname === "/api/preferences") return send(res, 200, preferences);
     if (req.method === "GET" && url.pathname === "/api/search") return send(res, 200, []);
     if (req.method === "POST" && url.pathname === "/api/messages") {

@@ -4,6 +4,12 @@ mode: milestone
 pool: group-chat
 requiredCheck: Chat E2E / muting
 workflowPath: .github/workflows/chat-e2e.yml
+visibleEvaluatorFiles:
+  - playwright.config.js
+  - test/e2e/threads.spec.js
+  - test/e2e/mentions.spec.js
+  - test/e2e/search.spec.js
+  - test/e2e/muting.spec.js
 protectedFiles:
   - .github/workflows/chat-e2e.yml
   - scripts/active-cards.sh
@@ -23,3 +29,5 @@ endings:
   partial: The milestone could not be fully assessed.
 ---
 The launch channel is busy, and some teammates need to focus without leaving the workspace. Let each person mute and unmute a channel. Keep the preference after a reload and suppress that channel's notifications for the person, while leaving the channel and its messages available. Make the control's current state clear to screen readers and keyboard users.
+
+The visible acceptance test is `test/e2e/muting.spec.js`. Its seeded notifications include one from #general and one from #launch. Open `Notifications` and confirm both are initially visible. Activate the #general mute control, reload, and confirm the control now offers unmuting. Open `Notifications` again: the #general notification must be absent and the #launch notification must remain visible. The control is identified by its accessible name and visible state, not an internal test ID. Run it with `npm run test:e2e -- test/e2e/muting.spec.js`.
