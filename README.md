@@ -9,7 +9,7 @@ npm install
 npm start
 ```
 
-Open http://127.0.0.1:4173. The `test/e2e` folder contains the protected browser tests used by the game. Each milestone card adds one test to the set run after merges. The workflow reads the selected cards from the PR Flood milestone titles, so unused cards do not show up as failing checks.
+Open http://127.0.0.1:4173. Break the requested feature into issues under Game Master issue #1 and work them with your local coding agent. When your changes are ready, comment `/game done` there to ask PR Flood to grade the milestone and post your debrief.
 
 ## Play
 
