@@ -10,4 +10,4 @@ jobs:
     if: github.repository == 'rkkautsar/group-chat-scenario'
     uses: rkkautsar/pr-flood.lol/.github/workflows/scenario-release.yml@f656a50bb681b3df703aeab052b0bcce728223f4
     with:
-      engine_ref: bd2734afb1050ec74b4bf886c3a7d4d7112f5117
+      engine_ref: de823acd7e2798fb08f56eb611eee1ad7601e9ac
